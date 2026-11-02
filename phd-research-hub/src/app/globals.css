@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- Visual themes (neutral bases). Accent (--primary) is set at runtime. ---------- */
+:root {
+  --radius: 0.6rem;
+  --primary: 222 47% 40%;
+  --primary-foreground: 0 0% 100%;
+  --destructive: 0 65% 50%;
+  --success: 152 45% 38%;
+  --warning: 35 85% 45%;
+}
+
+/* Graphite — neutral, Linear-like (default) */
+:root, [data-vt="graphite"] {
+  --background: 0 0% 99%;
+  --foreground: 240 10% 10%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 10%;
+  --muted: 240 5% 96%;
+  --muted-foreground: 240 4% 44%;
+  --accent: 240 5% 94.5%;
+  --accent-foreground: 240 10% 10%;
+  --border: 240 6% 90%;
+  --input: 240 6% 88%;
+  --sidebar: 240 5% 97.5%;
+}
+.dark, .dark[data-vt="graphite"] {
+  --background: 240 6% 7%;
+  --foreground: 0 0% 95%;
+  --card: 240 5% 9.5%;
+  --card-foreground: 0 0% 95%;
+  --muted: 240 4% 14%;
+  --muted-foreground: 240 4% 62%;
+  --accent: 240 4% 15%;
+  --accent-foreground: 0 0% 96%;
+  --border: 240 4% 17%;
+  --input: 240 4% 20%;
+  --sidebar: 240 6% 8.5%;
+  --success: 152 45% 50%;
+  --warning: 38 85% 58%;
+  --destructive: 0 70% 60%;
+}
+
+/* Paper — warm, manuscript-like */
+[data-vt="paper"] {
+  --background: 40 25% 98%;
+  --foreground: 30 15% 12%;
+  --card: 40 30% 99.5%;
+  --card-foreground: 30 15% 12%;
+  --muted: 38 20% 94%;
+  --muted-foreground: 30 8% 42%;
+  --accent: 38 22% 92%;
+  --accent-foreground: 30 15% 12%;
+  --border: 36 16% 87%;
+  --input: 36 14% 84%;
+  --sidebar: 38 24% 95.5%;
+}
+.dark[data-vt="paper"] {
+  --background: 30 10% 8%;
+  --foreground: 38 25% 92%;
+  --card: 30 9% 10.5%;
+  --card-foreground: 38 25% 92%;
+  --muted: 30 7% 15%;
+  --muted-foreground: 35 10% 62%;
+  --accent: 30 7% 16%;
+  --accent-foreground: 38 25% 94%;
+  --border: 30 7% 19%;
+  --input: 30 7% 22%;
+  --sidebar: 30 10% 9.5%;
+}
+
+/* Nordic — cool slate */
+[data-vt="nordic"] {
+  --background: 210 25% 98.5%;
+  --foreground: 215 25% 13%;
+  --card: 0 0% 100%;
+  --card-foreground: 215 25% 13%;
+  --muted: 212 22% 95%;
+  --muted-foreground: 215 12% 44%;
+  --accent: 212 22% 93%;
+  --accent-foreground: 215 25% 13%;
+  --border: 213 18% 88%;
+  --input: 213 16% 85%;
+  --sidebar: 212 25% 96.5%;
+}
+.dark[data-vt="nordic"] {
+  --background: 218 22% 8%;
+  --foreground: 210 25% 94%;
+  --card: 218 20% 10.5%;
+  --card-foreground: 210 25% 94%;
+  --muted: 218 16% 15%;
+  --muted-foreground: 214 12% 62%;
+  --accent: 218 16% 16%;
+  --accent-foreground: 210 25% 95%;
+  --border: 218 15% 19%;
+  --input: 218 15% 22%;
+  --sidebar: 218 22% 9.5%;
+}
+
+/* Library — deep green study */
+[data-vt="library"] {
+  --background: 100 12% 98%;
+  --foreground: 150 18% 11%;
+  --card: 90 20% 99.5%;
+  --card-foreground: 150 18% 11%;
+  --muted: 100 12% 94.5%;
+  --muted-foreground: 150 6% 42%;
+  --accent: 100 12% 92.5%;
+  --accent-foreground: 150 18% 11%;
+  --border: 100 9% 87%;
+  --input: 100 8% 84%;
+  --sidebar: 100 14% 96%;
+}
+.dark[data-vt="library"] {
+  --background: 155 16% 7%;
+  --foreground: 90 15% 92%;
+  --card: 155 14% 9.5%;
+  --card-foreground: 90 15% 92%;
+  --muted: 155 10% 14%;
+  --muted-foreground: 100 6% 62%;
+  --accent: 155 10% 15%;
+  --accent-foreground: 90 15% 94%;
+  --border: 155 9% 18%;
+  --input: 155 9% 21%;
+  --sidebar: 155 16% 8.5%;
+}
+
+@layer base {
+  * { @apply border-border; }
+  html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  body { @apply bg-background text-foreground; font-feature-settings: "cv11", "ss01"; }
+  ::selection { background: hsl(var(--primary) / 0.18); }
+  input[type="date"]::-webkit-calendar-picker-indicator { opacity: .5; cursor: pointer; }
+  .dark input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); }
+}
+
+@layer components {
+  .page-title { @apply font-serif text-[28px] leading-tight tracking-tight font-medium; }
+  .section-label { @apply text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground; }
+  .scroll-thin::-webkit-scrollbar { width: 8px; height: 8px; }
+  .scroll-thin::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 8px; }
+  /* surfaces sitting over a custom background stay readable */
+  .has-bg .surface { background: hsl(var(--card) / 0.86); backdrop-filter: blur(14px) saturate(1.1); }
+  .default-cover {
+    background:
+      radial-gradient(120% 140% at 0% 0%, hsl(var(--primary) / 0.16), transparent 55%),
+      radial-gradient(90% 120% at 100% 100%, hsl(var(--primary) / 0.10), transparent 60%),
+      repeating-linear-gradient(135deg, hsl(var(--foreground) / 0.035) 0 1px, transparent 1px 9px),
+      hsl(var(--muted));
+  }
+}
